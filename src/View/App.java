@@ -37,7 +37,7 @@ class Display{
                 else {
                     System.out.println("Invalid Choice\nTry Again");
                 }
-            } while (n != 0 && n != 1);
+            } while (n != 0 && n != 1 && n!=3);
         } catch (Exception e) {
             // TODO: handle exception
         }
