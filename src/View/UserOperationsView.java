@@ -8,7 +8,7 @@ public class UserOperationsView {
         this.userOperationscontroller=userOperationscontroller;
     }
     public void UserViewPage(int id){
-        System.out.println("--------------------------------------------------------------------------------------------------------------------------------------------------------------");
+        System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------");
         int choice;
         do{
         System.out.println("1.Display sneakers for viewing");
@@ -16,6 +16,8 @@ public class UserOperationsView {
         System.out.println("3.Add a sneaker to cart");
         System.out.println("4.View Order History");
         System.out.println("5.Logout");
+        System.out.println();
+        System.out.print("Enter Value: ");
         choice=in.nextInt();
         if(choice<=0 || choice>5){
             System.out.println("Invalid Input...Try Again");

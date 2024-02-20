@@ -38,7 +38,7 @@ public class User {
         this.confirmpassword=confirmpassword;
     }
     public String getConfirmPassword(){
-        return confirmpassword;
+        return confirmpassword; 
     }
     public void setGender(String gender){
         this.gender=gender;
