@@ -3,6 +3,7 @@ import java.util.Scanner;
 import Controller.UserOperationscontroller;
 import Dao.ShoeDAO;
 import Dao.ShoeDaoImpl;
+import Controller.AdminOperationsController;
 import Controller.UserController;
 public class UserView {
     UserController userController;
@@ -162,6 +163,10 @@ public class UserView {
         else if(k==-1){
             System.out.println("Login Successful");
             System.out.println("Hello ADMIN");
+            ShoeDAO shoedao=new ShoeDaoImpl();
+            AdminOperationsController adminOperationsController=new AdminOperationsController(shoedao);
+            AdminOperationsView ad=new AdminOperationsView(adminOperationsController);
+            ad.AdminOperations();
         }
         else{
             System.out.println("Login Successful");

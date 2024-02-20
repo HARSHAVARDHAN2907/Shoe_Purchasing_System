@@ -9,8 +9,37 @@ public class ShoeDaoImpl implements ShoeDAO{
     public ShoeDaoImpl(){
         con=EstablishConnection.getDbConnection();
     }
-    public void insertShoe(){
-
+    public boolean insertShoe(String sname,String sbrand,int ssize,int scount,String sprice,String gender){
+        String check="Select * from shoes where sname=?";
+        PreparedStatement pst;
+        try {
+            pst=con.prepareStatement(check);
+            pst.setString(1, sname);
+            ResultSet rs=pst.executeQuery();
+            if(rs.next()){
+                return false;
+            }
+            else{
+                String insertQuery="Insert into shoes(sname, sbrand, ssize, scount, sprice, gender) values(?,?,?,?,?,?)";
+                pst=con.prepareStatement(insertQuery);
+                pst.setString(1, sname);
+                pst.setString(2, sbrand);
+                pst.setInt(3, ssize);
+                pst.setInt(4, scount);
+                pst.setString(5, sprice);
+                pst.setString(6, gender);
+                int checkInsert=pst.executeUpdate();
+                if(checkInsert==1){
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            }
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+        return false;
     }
     public boolean deleteShoeByBrand(String brand){
         return false;
