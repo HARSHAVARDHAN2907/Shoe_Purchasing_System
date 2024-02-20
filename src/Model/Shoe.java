@@ -1,19 +1,27 @@
 package Model;
 
 public class Shoe {
+    private int sid;
     private String sname;
     private String sbrand;
     private String sprice;
     private String gender;
     private int ssize;
     private int scount;
-    public Shoe(String sname,String sbrand,String sprice,String gender,int ssize,int scount){
+    public Shoe(int sid,String sname,String sbrand,String sprice,String gender,int ssize,int scount){
+        this.sid=sid;
         this.gender=gender;
         this.sbrand=sbrand;
         this.sname=sname;
         this.sprice=sprice;
         this.ssize=ssize;
         this.scount=scount;
+    }
+    public void setSid(int sid){
+        this.sid=sid;
+    }
+    public int getSid(){
+        return sid;
     }
     public void setSname(String sname){
         this.sname=sname;

@@ -1,5 +1,6 @@
 package View;
 import java.util.*;
+import Model.*;
 import Controller.UserOperationscontroller;
 public class UserOperationsView {
     Scanner in=new Scanner(System.in);
@@ -27,6 +28,27 @@ public class UserOperationsView {
             System.out.println();
             Display disp=new Display();
             disp.display();
+        }
+        if(choice==1){
+            System.out.println();
+            int opt;
+            do{
+                System.out.println("1.Searcb By Id");
+                System.out.println("2.Search By Brand");
+                System.out.println("3.Search by shoe Size");
+                System.out.println();
+                System.out.print("Enter Value: ");
+                opt=in.nextInt();
+                if(opt<=1 && opt>=3){
+                    System.out.println("Invalid Input...Try Again");
+                }
+            }while(opt<=1 && opt>=3);
+            if(opt==1){
+            System.out.println();
+            System.out.print("Enter Sneaker ID: ");
+            int sid=in.nextInt();
+            ArrayList<Shoe> k=userOperationscontroller.viewById(sid);
+            }
         }
     }
 }
