@@ -41,5 +41,6 @@ class Display{
         } catch (Exception e) {
             // TODO: handle exception
         }
+        in.close();
     }
 }
