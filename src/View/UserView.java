@@ -4,6 +4,8 @@ import Controller.UserOperationscontroller;
 import Dao.ShoeDAO;
 import Dao.ShoeDaoImpl;
 import Controller.AdminOperationsController;
+import Dao.CartDAO;
+import Dao.CartDaoImpl;
 import Controller.UserController;
 public class UserView {
     UserController userController;
@@ -135,7 +137,8 @@ public class UserView {
             System.out.println("Registered Successfully...");
             System.out.println("Your User ID is "+k);
             ShoeDAO shoedao=new ShoeDaoImpl();
-            UserOperationscontroller userOperationscontroller=new UserOperationscontroller(shoedao);
+            CartDAO cartdao=new CartDaoImpl();
+            UserOperationscontroller userOperationscontroller=new UserOperationscontroller(shoedao,cartdao);
             UserOperationsView  userOperationsView=new UserOperationsView(userOperationscontroller);
             userOperationsView.UserViewPage(k);
         }
@@ -172,7 +175,8 @@ public class UserView {
             System.out.println("Login Successful");
             System.out.println("Your User ID is "+k);
             ShoeDAO shoedao=new ShoeDaoImpl();
-            UserOperationscontroller userOperationscontroller=new UserOperationscontroller(shoedao);
+            CartDAO cartDAO=new CartDaoImpl();
+            UserOperationscontroller userOperationscontroller=new UserOperationscontroller(shoedao,cartDAO);
             UserOperationsView  userOperationsView=new UserOperationsView(userOperationscontroller);
             userOperationsView.UserViewPage(k);
         }

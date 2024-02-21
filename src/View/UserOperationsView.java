@@ -1,6 +1,10 @@
 package View;
 import java.util.*;
+
+import Controller.CartContoller;
 import Controller.UserOperationscontroller;
+import Dao.CartDaoImpl;
+import Dao.CartDAO;
 import Model.Shoe;
 public class UserOperationsView {
     Scanner in=new Scanner(System.in);
@@ -16,49 +20,52 @@ public class UserOperationsView {
         System.out.println("2.Place an order for a sneaker");
         System.out.println("3.Add a sneaker to cart");
         System.out.println("4.View Order History");
-        System.out.println("5.Logout");
+        System.out.println("5.View Cart");
+        System.out.println("6.Cancel an Order");
+        System.out.println("7.Make a return request");
+        System.out.println("8.Logout");
         System.out.println();
         System.out.print("Enter Value: ");
         choice=in.nextInt();
-        if(choice<=0 || choice>5){
+        if(choice<=0 || choice>8){
             System.out.println("Invalid Input...Try Again");
         }
-        }while(!(choice>=1 && choice<=5));
-        if(choice==5){
+        }while(!(choice>=1 && choice<=8));
+        if(choice==8){
             System.out.println();
             Display disp=new Display();
             disp.display();
         }
+        if(choice==5)
+        {
+            CartDAO cartDAO=new CartDaoImpl();
+            CartContoller cartContoller=new CartContoller(cartDAO);
+            CartView cartView=new CartView(cartContoller);
+            cartView.getCartDetails(id);
+        }
+        if(choice==3){
+            CartDAO cartDAO=new CartDaoImpl();
+            CartContoller cartContoller=new CartContoller(cartDAO);
+            CartView cartView=new CartView(cartContoller);
+            cartView.insertToCart(id);
+        }
+
         if(choice==1){
             int opt;
             do{
                 System.out.println();
                 System.out.println("----------------------------------------------");
-                System.out.println("| 1.Search Sneaker by ID                     |");
-                System.out.println("| 2.Search Sneaker by Brand                  |");
-                System.out.println("| 3.Search Sneaker by Size                   |");
+                System.out.println("| 1.Search Sneaker by Brand                  |");
+                System.out.println("| 2.Search Sneaker by Size                   |");
                 System.out.println("----------------------------------------------");
                 System.out.println();
                 System.out.print("Enter Value: ");
                 opt=in.nextInt();
-                if(opt<1 && opt>3){
+                if(opt<1 && opt>2){
                     System.out.println("Invalid Input...Try Again");
                 }
-            }while(opt<1 && opt>3);
+            }while(opt<1 && opt>2);
             if(opt==1){
-                System.out.println();
-                System.out.print("Enter Sneaker ID to view: ");
-                int sid=in.nextInt();
-                ArrayList<Shoe> al=userOperationscontroller.viewById(sid);
-                if(al.size()==0){
-                    System.out.println("Not Available");
-                }
-                else{
-                    Shoe shoe=al.get(0);
-                    System.out.println("ID: "+shoe.getSid()+" | Name: "+shoe.getSname()+" | Brand: "+shoe.getSbrand()+" | Size: "+shoe.getSsize()+" | Wearable By: "+shoe.getGender()+" | Price: "+shoe.getSprice());
-                }
-            }
-            if(opt==2){
                 System.out.println();
                 System.out.print("Enter Sneaker Brand to view: ");
                 String brand=in.next().toLowerCase();
@@ -73,7 +80,7 @@ public class UserOperationsView {
                     }
                 }
             }
-            if(opt==3){
+            if(opt==2){
                 System.out.println();
                 System.out.print("Enter your sneaker size to view: ");
                 int size=in.nextInt();
@@ -88,6 +95,24 @@ public class UserOperationsView {
                     }
                 }
             }
+        }
+        int decision;
+        do{
+            System.out.println();
+            System.out.println("Enter 0 to continue or 1 to logout...");
+            System.out.println();
+            System.out.print("Enter Value: ");
+            decision=in.nextInt();
+            if(decision<0 && decision>1){
+                System.out.println("Invalid Input...Try Again");
+            }
+        }while(decision<0 && decision>1);
+        if(decision==1){
+            Display display=new Display();
+            display.display();
+        }
+        else{
+            UserViewPage(id);
         }
     }
 }

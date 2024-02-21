@@ -6,4 +6,5 @@ import java.util.*;
  */
 public interface OrdersDAO {
     public ArrayList<Order> getOrders(int id);
+    public boolean placeOrder(int id,int user_id);
 }
