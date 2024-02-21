@@ -6,7 +6,7 @@ public interface ShoeDAO {
     boolean deleteShoeById(int id);
     boolean deleteShoeByBrand(String brand);
     boolean deleteShoeBySize(int size);
-    boolean updateShoe(int id);
+    boolean updateShoe(int id,String field,String val);
     ArrayList<Shoe> viewById(int id);
     ArrayList<Shoe> viewByBrand(String brand);
     ArrayList<Shoe> viewBySize(int size);

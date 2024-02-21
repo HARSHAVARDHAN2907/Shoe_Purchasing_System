@@ -42,18 +42,100 @@ public class ShoeDaoImpl implements ShoeDAO{
         return false;
     }
     public boolean deleteShoeByBrand(String brand){
+        String query="Delete from shoes where sbrand=?";
+        PreparedStatement pst;
+        try {
+        pst=con.prepareStatement(query);
+        pst.setString(1, brand);
+        int x=pst.executeUpdate();
+        if(x==1){
+            return true;
+        }
+        else{
+            return false;
+        }
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
         return false;
     }
 
     public boolean deleteShoeById(int id){
+            String shoeDel="Delete from shoes where sid=?";
+            PreparedStatement pst;
+            try {
+            pst=con.prepareStatement(shoeDel);
+            pst.setInt(1, id);
+            int x=pst.executeUpdate();
+            if(x==1){
+                return true;
+            }
+            else{
+                return false;
+            }
+            } catch (Exception e) {
+                // TODO: handle exception
+            }
         return false;
     }
 
     public boolean deleteShoeBySize(int size){
+        String query="Delete from shoes where ssize=?";
+        PreparedStatement pst;
+        try {
+            pst=con.prepareStatement(query);
+            pst.setInt(1, size);
+            int x=pst.executeUpdate();
+            if(x==1){
+                return true;
+            }
+            else{
+                return false;
+            }
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
         return false;
     }
 
-    public boolean updateShoe(int id){
+    public boolean updateShoe(int id,String field,String val){
+        if(field.equals("ssize") || field.equals("scount")){
+        String query="Update shoes set "+field+"=? where sid=?";
+        PreparedStatement pst;
+        int val1=Integer.parseInt(val);
+        try {
+            pst=con.prepareStatement(query);
+            pst.setInt(1, val1);
+            pst.setInt(2, id);
+            int x=pst.executeUpdate();
+            if(x==1){
+                return true;
+            }
+            else{
+                return false;
+            }
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+        }
+        else{
+            String query="Update shoes set "+field+"=? where sid=?";
+            PreparedStatement pst;
+            try {
+                pst=con.prepareStatement(query);
+                pst.setString(1, val);
+                pst.setInt(2, id);
+                int x=pst.executeUpdate();
+                if(x==1){
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            } catch (Exception e) {
+                // TODO: handle exception
+            }
+        }
         return false;
     }
 

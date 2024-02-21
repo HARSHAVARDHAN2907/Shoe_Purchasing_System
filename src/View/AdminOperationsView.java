@@ -31,6 +31,81 @@ class AdminOperationsView {
                 System.out.println("Invalid Input...Try Again");
             }
         }while(choice<=0 &&  choice>7);
+        if(choice==2){
+            System.out.println();
+            System.out.print("Enter Sneaker ID: ");
+            int sid=in.nextInt();
+            System.out.println();
+            System.out.print("Enter the field you want to update: ");
+            String field=in.next();
+            System.out.println();
+            System.out.print("Enter value you want to update with: ");
+            in.nextLine();
+            String val=in.nextLine();
+            boolean upcheck=adminOperationsController.updateShoe(sid,field,val);
+            if(upcheck==true){
+                System.out.println("Updated Successfully");
+            }
+            else{
+                System.out.println("Sneaker ID Invalid");
+            }
+        }
+        if(choice==3){
+            int opt;
+            do{
+                System.out.println();
+                System.out.println("----------------------------------------------");
+                System.out.println("| 1.Delete Sneaker by ID                     |");
+                System.out.println("| 2.Delete Sneaker by Brand                  |");
+                System.out.println("| 3.Delete Sneaker by Size                   |");
+                System.out.println("----------------------------------------------");
+                System.out.println();
+                System.out.print("Enter Value: ");
+                opt=in.nextInt();
+                if(opt<1 && opt>3){
+                    System.out.println("Invalid Input...Try Again");
+                }
+            }while(opt<1 && opt>3);
+            if(opt==1){
+            System.out.println();
+            System.out.print("Enter Sneaker ID to delete: ");
+            int sid=in.nextInt();
+            System.out.println();
+            boolean delcheck=adminOperationsController.deleteShoeById(sid);
+            if(delcheck==true){
+                System.out.println("Deleted Successfully");
+            }
+            else{
+                System.out.println("Invalid Sneaker ID");
+            }
+            }
+            if(opt==2){
+            System.out.println();
+            System.out.print("Enter Sneaker Brand to delete: ");
+            String sbrand=in.next();
+            System.out.println();
+            boolean delcheck=adminOperationsController.deleteShoeByBrand(sbrand);
+            if(delcheck==true){
+                System.out.println("Deleted Successfully");
+            }
+            else{
+                System.out.println("Brand Not Found");
+            }
+            }
+            if(opt==3){
+            System.out.println();
+            System.out.print("Enter Sneaker Size to delete: ");
+            int ssize=in.nextInt();
+            System.out.println();
+            boolean delcheck=adminOperationsController.deleteShoeBySize(ssize);
+            if(delcheck==true){
+                System.out.println("Deleted Successfully");
+            }
+            else{
+                System.out.println("Size Not Found");
+            }
+            }
+        }
         if(choice==7){
             Display display=new Display();
             display.display();

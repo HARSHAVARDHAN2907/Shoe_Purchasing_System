@@ -28,4 +28,25 @@ public class AdminOperationsController {
         boolean t=shoeDAO.insertShoe(sname, sbrand, ssize, scount, sprice, gender);
         return t;
     }
+
+    public boolean updateShoe(int id,String field,String val){
+        boolean t=shoeDAO.updateShoe(id,field,val);
+        return t;
+    }
+
+
+    public boolean deleteShoeById(int id){
+        boolean t=shoeDAO.deleteShoeById(id);
+        return t;
+    }
+
+    public boolean deleteShoeByBrand(String brand){
+        boolean t=shoeDAO.deleteShoeByBrand(brand);
+        return t;
+    }
+
+    public boolean deleteShoeBySize(int size){
+        boolean t=shoeDAO.deleteShoeBySize(size);
+        return t;
+    }
 }
