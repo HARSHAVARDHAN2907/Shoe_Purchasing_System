@@ -43,23 +43,20 @@ public class CartView {
          System.out.println();
          int process;
          do{
-            System.out.println("1.Order Every Sneaker in the cart");
-            System.out.println("2.Order Specific Sneaker");
-            System.out.println("3.Go Back");
+            System.out.println("1.Order a Sneaker");
+            System.out.println("2.Go Back");
             System.out.println();
             System.out.print("Enter Value: ");
             process=in.nextInt();
-            if(process<1 && process>3){
+            if(process<1 || process>2){
                System.out.println("Invalid Input...Try Again");
             }
-         }while(process<1 && process>3);
-         if(process==3){
-            return;
+         }while(process<1 || process>2);
+         if(process==2){
+            UserOperationsView userOperationsView=new UserOperationsView(userOperationscontroller);
+            userOperationsView.UserViewPage(id);
          }
          if(process==1){
-
-         }
-         if(process==2){
          OrderView orderView=new OrderView();
          orderView.SpecificSneaker(id);
          }

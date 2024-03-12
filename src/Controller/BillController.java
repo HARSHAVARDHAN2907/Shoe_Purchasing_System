@@ -1,18 +1,17 @@
 package Controller;
 
-import java.util.ArrayList;
-
+import java.sql.Connection;
 import Dao.ShoeDAO;
 import Model.Shoe;
 
 public class BillController {
+    Connection con;
     ShoeDAO shoeDAO;
     public BillController(ShoeDAO shoeDAO){
         this.shoeDAO=shoeDAO;
     }
-    public ArrayList<Shoe> generateBill(){
-        ArrayList<Shoe> al=new ArrayList<>();
-        
-        return al;
+    public Shoe generateBill(int user_id,int sid){
+        Shoe shoedetails=shoeDAO.generateBill(user_id, sid);
+        return shoedetails;
     }
 }

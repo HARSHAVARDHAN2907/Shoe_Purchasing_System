@@ -35,4 +35,9 @@ public class UserOperationscontroller {
         ArrayList<Cart> al=cartDAO.getCartDetails(id);
         return al;
     }
+
+    public ArrayList<Shoe> returnOrders(int id){
+        ArrayList<Shoe> al=shoeDAO.returnOrders(id);
+        return al;
+    }
 }

@@ -21,16 +21,14 @@ class AdminOperationsView {
             System.out.println("2.Update Existing Sneaker");
             System.out.println("3.Delete a Sneaker Record");
             System.out.println("4.Display Sneakers");
-            System.out.println("5.View Return Queries");
-            System.out.println("6.View Billing Records");
-            System.out.println("7.LogOut");
+            System.out.println("5.LogOut");
             System.out.println();
             System.out.print("Enter Value: ");
             choice=in.nextInt();
-            if(choice<=0 && choice>7){
+            if(choice<=0 && choice>5){
                 System.out.println("Invalid Input...Try Again");
             }
-        }while(choice<=0 &&  choice>7);
+        }while(choice<=0 &&  choice>5);
         if(choice==2){
             System.out.println();
             System.out.print("Enter Sneaker ID: ");
@@ -106,9 +104,10 @@ class AdminOperationsView {
             }
             }
         }
-        if(choice==7){
+        if(choice==5){
             Display display=new Display();
             display.display();
+            return;
         }
         if(choice==4){
             int opt;

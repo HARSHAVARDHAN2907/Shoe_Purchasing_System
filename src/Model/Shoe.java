@@ -68,4 +68,8 @@ public class Shoe {
     public int getScount() {
         return scount;
     }
+    @Override
+    public String  toString(){
+        return "ID: "+sid+" | Name: "+sname+" | Brand: "+sbrand+" | Size: "+ssize+" | Wearable By: "+gender+" | Price: "+sprice;
+    }
 }

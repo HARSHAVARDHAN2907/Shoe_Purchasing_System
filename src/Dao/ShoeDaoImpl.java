@@ -224,4 +224,63 @@ public class ShoeDaoImpl implements ShoeDAO{
         }
         return al;
     }
+    public Shoe generateBill(int user_id,int id){
+        String query="Select * from shoes where sid=?";
+        PreparedStatement pst;
+        try {
+            pst=con.prepareStatement(query);
+            pst.setInt(1, id);
+            ResultSet rs=pst.executeQuery();
+            if(rs.next()){
+                int sid=rs.getInt(1);
+                String sname=rs.getString(2);
+                String sbrand=rs.getString(3);
+                int ssize=rs.getInt(4);
+                int scount=rs.getInt(5);
+                String sprice=rs.getString(6);
+                String gender=rs.getString(7);
+                if(scount>0){
+                Shoe shoe=new Shoe(sid, sname, sbrand, sprice, gender, ssize, scount);
+                return shoe;
+                }
+        }
+     } catch (Exception e) {
+            // TODO: handle exception
+        }
+        return new Shoe(0, null, null, null, null, 0, 0);
+    }
+    public ArrayList<Shoe> returnOrders(int user_id) {
+        ArrayList<Shoe> al = new ArrayList<>();
+        String query = "SELECT sid FROM orders WHERE user_id=?";
+        PreparedStatement pst;
+        try {
+            pst = con.prepareStatement(query);
+            pst.setInt(1, user_id);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                int sid = rs.getInt(1);
+                String s = "SELECT * FROM shoes WHERE sid=?";
+                pst = con.prepareStatement(s);
+                pst.setInt(1, sid);
+                ResultSet res = pst.executeQuery();
+                while (res.next()) {
+                    int id = res.getInt(1);
+                    String sname = res.getString(2);
+                    String sbrand = res.getString(3);
+                    int ssize = res.getInt(4);
+                    int scount = res.getInt(5);
+                    String sprice = res.getString(6);
+                    String gender = res.getString(7);
+                    if (scount > 0) {
+                        Shoe shoe = new Shoe(id, sname, sbrand, sprice, gender, ssize, scount);
+                        al.add(shoe);
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace(); // Handle exception appropriately, printing stack trace for now
+        }
+        return al;
+    }
+    
 }

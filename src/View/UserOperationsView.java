@@ -17,26 +17,24 @@ public class UserOperationsView {
         int choice;
         do{
         System.out.println("1.Display sneakers for viewing");
-        System.out.println("2.Place an order for a sneaker");
-        System.out.println("3.Add a sneaker to cart");
-        System.out.println("4.View Order History");
-        System.out.println("5.View Cart");
-        System.out.println("6.Cancel an Order");
-        System.out.println("7.Make a return request");
-        System.out.println("8.Logout");
+        System.out.println("2.Add a sneaker to cart");
+        System.out.println("3.View Order History");
+        System.out.println("4.View Cart");
+        System.out.println("5.Logout");
         System.out.println();
         System.out.print("Enter Value: ");
         choice=in.nextInt();
-        if(choice<=0 || choice>8){
+        if(choice<=0 || choice>7){
             System.out.println("Invalid Input...Try Again");
         }
-        }while(!(choice>=1 && choice<=8));
-        if(choice==8){
+        }while(!(choice>=1 && choice<=7));
+        if(choice==5){
             System.out.println();
             Display disp=new Display();
             disp.display();
+            return;
         }
-        if(choice==5)
+        if(choice==4)
         {
             CartDAO cartDAO=new CartDaoImpl();
             CartContoller cartContoller=new CartContoller(cartDAO);
@@ -44,6 +42,14 @@ public class UserOperationsView {
             cartView.getCartDetails(id);
         }
         if(choice==3){
+            System.out.println();
+            System.out.println("Your Past Orders: ");
+            ArrayList<Shoe> al=userOperationscontroller.returnOrders(id);
+            for(Shoe shoe:al){
+                System.out.println(shoe.toString());
+            }
+        }
+        if(choice==2){
             CartDAO cartDAO=new CartDaoImpl();
             CartContoller cartContoller=new CartContoller(cartDAO);
             CartView cartView=new CartView(cartContoller);
@@ -103,10 +109,10 @@ public class UserOperationsView {
             System.out.println();
             System.out.print("Enter Value: ");
             decision=in.nextInt();
-            if(decision<0 && decision>1){
+            if(decision<0 || decision>1){
                 System.out.println("Invalid Input...Try Again");
             }
-        }while(decision<0 && decision>1);
+        }while(decision<0 || decision>1);
         if(decision==1){
             Display display=new Display();
             display.display();
